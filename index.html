@@ -74,6 +74,18 @@
 
     <script>
 
+    /*
+      Need to make it so the arithmetic function will equate two numbers if arithmetic function is called
+      twice before equals button is used
+
+      Need to remove commas when allNum array is called as innerHTML
+
+      Need to style calculator
+
+      Need to get the clear button working as intended
+
+    */
+
     //Assign elements of page
     const disp = document.getElementById('screen');
     const eq = document.getElementById('eq');
@@ -83,6 +95,7 @@
     let currNum = "";
     let allNum = [];
     let total;
+    let firstSum = true;
 
     //Arithmetic booleans
     let plus = false;
@@ -105,33 +118,39 @@
         total = parseInt(currNum);
       }
       if(currNum){
-        allNum.push(parseInt(currNum));
+        if(firstSum == true){
+          allNum.push(parseInt(currNum));
+        }
         currNum = "";
-        prev.innerHTML= allNum;
         if(e.target.name =='plus'){
+          allNum.push('+');
           plus = true;
           minus = false;
           multiply = false;
           divide = false;
         }
         else if(e.target.name == 'minus'){
+          allNum.push('-');
           plus = false;
           minus = true;
           multiply = false;
           divide = false;
         }
         else if(e.target.name == 'multiply'){
+          allNum.push('X');
           plus = false;
           minus = false;
           multiply = true;
           divide = false;
         }
         else if(e.target.name == 'divide'){
+          allNum.push('&#247');
           plus = false;
           minus = false;
           multiply = false;
           divide = true;
         }
+        prev.innerHTML= allNum;
       }
       console.log(allNum);
     }
@@ -142,25 +161,30 @@
         total += allNum[allNum.length-1];
         disp.value = total;
         plus = false;
+        firstSum = false;
       }
       else if(minus == true){
         allNum.push(parseInt(currNum));
         total -= allNum[allNum.length-1];
         disp.value = total;
         minus = false;
+        firstSum = false;
       }
       else if(multiply == true){
         allNum.push(parseInt(currNum));
         total *= allNum[allNum.length-1];
         disp.value = total;
         multiply = false;
+        firstSum = false;
       }
       else if(divide == true){
         allNum.push(parseInt(currNum));
         total /= allNum[allNum.length-1];
         disp.value = total;
         divide = false;
+        firstSum = false;
       }
+
     }
 
 
