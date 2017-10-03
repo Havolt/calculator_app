@@ -15,8 +15,19 @@
       width: 350px;
       height: 80px;
       font-size: 40px;
-      margin: 20px 55px;
+      margin: 0px 55px 20px;
       padding-left: 10px;
+    }
+
+    #prev{
+      padding-left: 10px;
+      width: 352px;
+      height: 30px;
+      margin: 0px 55px;
+      border-top: 1px solid lightgrey;
+      border-left: 1px solid lightgrey;
+      border-right: 1px solid lightgrey;
+      font-family: arial;
     }
 
     #pad{
@@ -36,6 +47,7 @@
   <body>
 
     <div id="app">
+      <div id="prev">Hello there</div>
       <input id="screen" type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></input>
 
       <div id="pad">
@@ -65,6 +77,7 @@
     //Assign elements of page
     const disp = document.getElementById('screen');
     const eq = document.getElementById('eq');
+    const prev = document.getElementById('prev');
 
     //Holders and Numbers
     let currNum = "";
@@ -94,6 +107,7 @@
       if(currNum){
         allNum.push(parseInt(currNum));
         currNum = "";
+        prev.innerHTML= allNum;
         if(e.target.name =='plus'){
           plus = true;
           minus = false;
