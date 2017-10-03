@@ -16,6 +16,7 @@
       height: 80px;
       font-size: 40px;
       margin: 20px 55px;
+      padding-left: 10px;
     }
 
     #pad{
@@ -38,21 +39,21 @@
       <input id="screen" type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></input>
 
       <div id="pad">
-        <button type="button" name="1">1</button>
-        <button type="button" name="2">2</button>
-        <button type="button" name="3">3</button>
-        <button type="button" name="4">4</button>
-        <button type="button" name="5">5</button>
-        <button type="button" name="6">6</button>
-        <button type="button" name="7">7</button>
-        <button type="button" name="8">8</button>
-        <button type="button" name="9">9</button>
-        <button type="button" name="0">0</button>
-        <button type="button" name="plus">+</button>
-        <button type="button" name="minus">-</button>
-        <button type="button" name="multiply">X</button>
-        <button type="button" name="divide">&#247</button>
-        <button type="button" name="equals">=</button>
+        <button onclick="addNum(event)" type="button" name="1">1</button>
+        <button onclick="addNum(event)" type="button" name="2">2</button>
+        <button onclick="addNum(event)" type="button" name="3">3</button>
+        <button onclick="addNum(event)" type="button" name="4">4</button>
+        <button onclick="addNum(event)" type="button" name="5">5</button>
+        <button onclick="addNum(event)" type="button" name="6">6</button>
+        <button onclick="addNum(event)" type="button" name="7">7</button>
+        <button onclick="addNum(event)" type="button" name="8">8</button>
+        <button onclick="addNum(event)" type="button" name="9">9</button>
+        <button onclick="addNum(event)" type="button" name="0">0</button>
+        <button onclick="arithmetic(event)" type="button" name="plus">+</button>
+        <button onclick="arithmetic(event)" type="button" name="minus">-</button>
+        <button onclick="arithmetic(event)" type="button" name="multiply">X</button>
+        <button onclick="arithmetic(event)" type="button" name="divide">&#247</button>
+        <button onclick="equate(event)" type="button" name="equals">=</button>
         <button type="button" name="clear">C</button>
       </div>
 
@@ -60,6 +61,93 @@
     </div>
 
     <script>
+
+    //Assign elements of page
+    const disp = document.getElementById('screen');
+    const eq = document.getElementById('eq');
+
+    //Holders and Numbers
+    let currNum = "";
+    let allNum = [];
+    let total;
+
+    //Arithmetic booleans
+    let plus = false;
+    let minus = false;
+    let multiply = false;
+    let divide = false;
+
+
+
+    function addNum(e){
+      console.log(e);
+      currNum += e.target.name;
+      disp.value = currNum;
+      console.log(currNum);
+
+    }
+
+    function arithmetic(e){
+      if(!total){
+        total = parseInt(currNum);
+      }
+      if(currNum){
+        allNum.push(parseInt(currNum));
+        currNum = "";
+        if(e.target.name =='plus'){
+          plus = true;
+          minus = false;
+          multiply = false;
+          divide = false;
+        }
+        else if(e.target.name == 'minus'){
+          plus = false;
+          minus = true;
+          multiply = false;
+          divide = false;
+        }
+        else if(e.target.name == 'multiply'){
+          plus = false;
+          minus = false;
+          multiply = true;
+          divide = false;
+        }
+        else if(e.target.name == 'divide'){
+          plus = false;
+          minus = false;
+          multiply = false;
+          divide = true;
+        }
+      }
+      console.log(allNum);
+    }
+
+    function equate(){
+      if(plus == true){
+        allNum.push(parseInt(currNum));
+        total += allNum[allNum.length-1];
+        disp.value = total;
+        plus = false;
+      }
+      else if(minus == true){
+        allNum.push(parseInt(currNum));
+        total -= allNum[allNum.length-1];
+        disp.value = total;
+        minus = false;
+      }
+      else if(multiply == true){
+        allNum.push(parseInt(currNum));
+        total *= allNum[allNum.length-1];
+        disp.value = total;
+        multiply = false;
+      }
+      else if(divide == true){
+        allNum.push(parseInt(currNum));
+        total /= allNum[allNum.length-1];
+        disp.value = total;
+        divide = false;
+      }
+    }
 
 
     </script>
