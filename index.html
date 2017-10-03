@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Calculator</title>
+    <style>
+
+    #app{
+      border: 2px solid black;
+      width: 460px;
+      border-radius: 5%;
+    }
+
+    #screen{
+      width: 350px;
+      height: 80px;
+      font-size: 40px;
+      margin: 20px 55px;
+    }
+
+    #pad{
+      width: 350px;
+      margin: 10px 55px;
+    }
+
+    button{
+      margin-top: 8px;
+      margin-left: 3px;
+      width: 81px;
+      height: 60px;
+    }
+
+    </style>
+  </head>
+  <body>
+
+    <div id="app">
+      <input id="screen" type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></input>
+
+      <div id="pad">
+        <button type="button" name="1">1</button>
+        <button type="button" name="2">2</button>
+        <button type="button" name="3">3</button>
+        <button type="button" name="4">4</button>
+        <button type="button" name="5">5</button>
+        <button type="button" name="6">6</button>
+        <button type="button" name="7">7</button>
+        <button type="button" name="8">8</button>
+        <button type="button" name="9">9</button>
+        <button type="button" name="0">0</button>
+        <button type="button" name="plus">+</button>
+        <button type="button" name="minus">-</button>
+        <button type="button" name="multiply">X</button>
+        <button type="button" name="divide">&#247</button>
+        <button type="button" name="equals">=</button>
+        <button type="button" name="clear">C</button>
+      </div>
+
+
+    </div>
+
+    <script>
+
+
+    </script>
+  </body>
+</html>
