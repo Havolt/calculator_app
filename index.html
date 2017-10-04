@@ -78,8 +78,6 @@
       Need to make it so the arithmetic function will equate two numbers if arithmetic function is called
       twice before equals button is used
 
-      Need to remove commas when allNum array is called as innerHTML
-
       Need to style calculator
 
       Need to get the clear button working as intended
@@ -96,6 +94,7 @@
     let allNum = [];
     let total;
     let firstSum = true;
+    let arithmeticPressedTimes = 0;
 
     //Arithmetic booleans
     let plus = false;
@@ -128,6 +127,7 @@
           minus = false;
           multiply = false;
           divide = false;
+          arithmeticPressedTimes++;
         }
         else if(e.target.name == 'minus'){
           allNum.push('-');
@@ -135,6 +135,7 @@
           minus = true;
           multiply = false;
           divide = false;
+          arithmeticPressedTimes++;
         }
         else if(e.target.name == 'multiply'){
           allNum.push('X');
@@ -142,6 +143,7 @@
           minus = false;
           multiply = true;
           divide = false;
+          arithmeticPressedTimes++;
         }
         else if(e.target.name == 'divide'){
           allNum.push('&#247');
@@ -149,8 +151,9 @@
           minus = false;
           multiply = false;
           divide = true;
+          arithmeticPressedTimes++;
         }
-        prev.innerHTML= allNum;
+        prev.innerHTML= allNum.join(' ');
       }
       console.log(allNum);
     }
@@ -162,6 +165,7 @@
         disp.value = total;
         plus = false;
         firstSum = false;
+        arithmeticPressedTimes = 0;
       }
       else if(minus == true){
         allNum.push(parseInt(currNum));
@@ -169,6 +173,7 @@
         disp.value = total;
         minus = false;
         firstSum = false;
+        arithmeticPressedTimes = 0;
       }
       else if(multiply == true){
         allNum.push(parseInt(currNum));
@@ -176,6 +181,7 @@
         disp.value = total;
         multiply = false;
         firstSum = false;
+        arithmeticPressedTimes = 0;
       }
       else if(divide == true){
         allNum.push(parseInt(currNum));
@@ -183,6 +189,7 @@
         disp.value = total;
         divide = false;
         firstSum = false;
+        arithmeticPressedTimes = 0;
       }
 
     }
